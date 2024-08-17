@@ -21,24 +21,24 @@ def tasks_list_create(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['GET', 'PUT', 'DELETE'])
-def tasks_detail_update_delete(request, id=None):
-    try:
-        task = models.Task.objects.get(id=id)
-    except models.Task.DoesNotExist:
-        return Response({'error': 'Task not found'}, status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = serializers.TaskModelSerializer(task)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    elif request.method == 'PUT':
-        serializer = serializers.TaskModelSerializer(task, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        task.delete()
-        return Response({'message': 'Book deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+# @api_view(['GET', 'PUT', 'DELETE'])
+# def tasks_detail_update_delete(request, id=None):
+#     try:
+#         task = models.Task.objects.get(id=id)
+#     except models.Task.DoesNotExist:
+#         return Response({'error': 'Task not found'}, status=status.HTTP_404_NOT_FOUND)
+#     if request.method == 'GET':
+#         serializer = serializers.TaskModelSerializer(task)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+#     elif request.method == 'PUT':
+#         serializer = serializers.TaskModelSerializer(task, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     elif request.method == 'DELETE':
+#         task.delete()
+#         return Response({'message': 'Book deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 # Создайте эндпойнт для получения списка задач с фильтрацией по статусу и дедлайну. 
 # Реализуйте пагинацию результатов.
