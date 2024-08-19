@@ -130,3 +130,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# https://www.django-rest-framework.org/api-guide/pagination/
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'myapp.pagination.CustomPagination',
+    'PAGE_SIZE': 10,
+    # https://cra.mr/2011/03/08/building-cursors-for-the-disqus-api
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    # http://api.example.org/accounts/?limit=100 http://api.example.org/accounts/?offset=400&limit=100
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # http://api.example.org/accounts/?page=4 http://api.example.org/accounts/?page=4&page_size=100
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+}

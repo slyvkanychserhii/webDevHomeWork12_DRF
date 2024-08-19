@@ -32,6 +32,11 @@ def default_deadline():
 # Abstract base classes
 # https://docs.djangoproject.com/en/5.0/topics/db/models/#abstract-base-classes
 
+# Заметил проблему что счетчик pk для Task и SubTask один и тот же. 
+# Т.е. если pk таски = 1, а субтаски = 2, то при добавлении новой таски 
+# получаю pk = 3. В абстрактной модели, как и дочерних моделях, pk явно не определяю. 
+
+
 # Model Meta options
 # https://docs.djangoproject.com/en/5.0/ref/models/options/
 
